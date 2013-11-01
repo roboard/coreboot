@@ -22,6 +22,7 @@
 #include <arch/io.h>
 #include <stdlib.h>
 #include <console/console.h>
+#include <cpu/x86/msr.h>
 #include "cpu/x86/mtrr/earlymtrr.c"
 #include "drivers/pc80/i8254.c"
 #include "northbridge/dmp/vortex86ex/northbridge.h"
@@ -72,6 +73,14 @@ static void disable_watchdog(void)
 	unlock_indirect_reg();
 	// disable watchdog timer
 	write_indirect_reg(0x37, 0x0);
+}
+
+static void set_msr(void)
+{
+	msr_t msr;
+	msr.hi = 0x000015f00;
+	msr.lo = 0x0d757f01e;
+	wrmsr(0xcfcfcf00, msr);
 }
 
 void set_ex_powerdown_control(void)
@@ -317,6 +326,7 @@ static void main(unsigned long bist)
 			hlt();
 	}
 	disable_watchdog();
+	set_msr();
 	set_ex_powerdown_control();
 	set_pci_nb_pmcr();
 	set_pci_sb_lpccr();
