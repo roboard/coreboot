@@ -39,6 +39,7 @@
 #define	SB_REG_II2CCR		0xd4
 
 #define	SB1			PCI_DEV(0, 7, 1)
+#define SB1_REG_PCIET_CFG1	0x64
 #define	SB1_REG_EXT_PIRQ_ROUTE2	0xb4
 
 #define	SYSTEM_CTL_PORT         0x92

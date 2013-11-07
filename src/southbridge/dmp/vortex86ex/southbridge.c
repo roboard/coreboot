@@ -72,6 +72,7 @@ static const unsigned char irq_to_int_routing[16] = {
 #define SPI1_IRQ 10
 #define I2C0_IRQ 10
 #define MOTOR_IRQ 11
+#define PCIET_IRQ 4
 
 /* RT0-3 IRQs. */
 #define RT3_IRQ 3
@@ -566,6 +567,9 @@ static void southbridge_init_func1(struct device *dev)
 	ext_int_routing2 |= irq_to_int_routing[SPI1_IRQ] << SPI1_IRQ_SHIFT;
 	ext_int_routing2 |= irq_to_int_routing[MOTOR_IRQ] << MOTOR_IRQ_SHIFT;
 	pci_write_config32(dev, SB1_REG_EXT_PIRQ_ROUTE2, ext_int_routing2);
+	/* Setup S/B function 1 PCI-e Target Config Reg 1(0x64). */
+	u32 pciet_cfg1 = irq_to_int_routing[PCIET_IRQ];
+	pci_write_config32(dev, SB1_REG_PCIET_CFG1, pciet_cfg1);
 
 	/* Assign in-chip PCI device IRQs. */
 	if (SPI1_IRQ || MOTOR_IRQ) {
