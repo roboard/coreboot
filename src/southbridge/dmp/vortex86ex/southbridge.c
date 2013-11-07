@@ -60,25 +60,25 @@ static const unsigned char irq_to_int_routing[16] = {
 #define MOTOR_IRQ_SHIFT 0
 
 /* in-chip PCI device IRQs(0 for disabled). */
-#define EHCII_IRQ 5
-#define OHCII_IRQ 5
-#define MAC_IRQ 6
+#define EHCII_IRQ 10
+#define OHCII_IRQ 14
+#define MAC_IRQ 9
 
-#define CAN_IRQ 10
+#define CAN_IRQ 5
 #define HDA_IRQ 7
-#define USBD_IRQ 6
-#define PIDE_IRQ 5
+#define USBD_IRQ 5
+#define PIDE_IRQ 11
 
-#define SPI1_IRQ 10
-#define I2C0_IRQ 10
-#define MOTOR_IRQ 11
+#define SPI1_IRQ 3
+#define I2C0_IRQ 4
+#define MOTOR_IRQ 6
 #define PCIET_IRQ 4
 
 /* RT0-3 IRQs. */
-#define RT3_IRQ 3
-#define RT2_IRQ 4
-#define RT1_IRQ 5
-#define RT0_IRQ 6
+#define RT3_IRQ 15
+#define RT2_IRQ 15
+#define RT1_IRQ 15
+#define RT0_IRQ 15
 
 /* IDE legacy mode IRQs. */
 #define IDE1_LEGACY_IRQ 14
